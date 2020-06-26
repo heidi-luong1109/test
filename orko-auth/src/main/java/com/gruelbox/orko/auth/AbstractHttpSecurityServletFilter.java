@@ -36,7 +36,7 @@ public abstract class AbstractHttpSecurityServletFilter extends AbstractHttpServ
         httpRequest.getContextPath(),
         httpRequest.getServletPath(),
         httpRequest.getPathInfo());
-/*
+
     // TODO security-bypassed URI patterns should be provided on a modular
     // plugin basis
     if ("/favicon.ico".equals(httpRequest.getServletPath())
@@ -44,7 +44,7 @@ public abstract class AbstractHttpSecurityServletFilter extends AbstractHttpServ
         || (httpRequest.getPathInfo() != null && httpRequest.getPathInfo().startsWith("/auth"))) {
       chain.doFilter(httpRequest, httpResponse);
       return;
-    }*/
+    }
 
     if (filterHttpRequest(httpRequest, httpResponse)) {
       chain.doFilter(httpRequest, httpResponse);
