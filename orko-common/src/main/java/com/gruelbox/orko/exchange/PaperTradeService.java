@@ -270,7 +270,7 @@ final class PaperTradeService implements TradeService {
    */
   private void randomDelay() {
     try {
-      Thread.sleep(random.nextInt(2000));
+      Thread.sleep(random.nextInt(100));
     } catch (final InterruptedException e) {
       Thread.currentThread().interrupt();
       throw new RuntimeException(e);
