@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dmorf.mysql.noadmin=true -Ddw.server.connector.port=$PORT -jar orko-app/target/orko-app.jar server orko-app/heroku-config.yml

@@ -1,0 +1,175 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Trebuchet MS';
+@headerFont        : system-ui, sans-serif;
+@pageFont          : @fontName, Tahoma, Arial, sans-serif;
+@importGoogleFonts : false;
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+@emSize   : 13px;
+@fontSize : 13px;
+
+/*--------------
+   Form Input
+---------------*/
+
+/* This adjusts the default form input across all elements */
+@inputBackground        : #131722;
+@inputVerticalPadding   : @relative8px;
+@inputHorizontalPadding : @relative8px;
+@inputPadding           : @inputVerticalPadding @inputHorizontalPadding;
+
+/* Input Text Color */
+@inputColor: @textColor;
+@inputPlaceholderColor: fade(@inputColor, 40%);
+@inputPlaceholderFocusColor: fade(@inputColor, 60%);
+
+/* Line Height Default For Inputs in Browser (Descenders are 17px at 14px base em) */
+@inputLineHeight: unit((17 / 14), em);
+
+/*-------------------
+    Focused Input
+--------------------*/
+
+/* Used on inputs, textarea etc */
+@focusedFormBorderColor: fade(lighten(@blue, 20%), 30%);
+
+/* Used on dropdowns, other larger blocks */
+@focusedFormMutedBorderColor: fade(lighten(@blue, 20%), 10%);
+
+/*-------------------
+        Sizes
+--------------------*/
+
+@miniSize        : (10 / 13);
+@tinySize        : (11 / 13);
+@smallSize       : (12 / 13);
+@mediumSize      : (13 / 13);
+@largeSize       : (14 / 13);
+@bigSize         : (16 / 13);
+@hugeSize        : (18 / 13);
+@massiveSize     : (22 / 13);
+
+/*-------------------
+     Breakpoints
+--------------------*/
+
+@mobileBreakpoint            : 500px;
+@tabletBreakpoint            : 768px;
+@computerBreakpoint          : 992px;
+@largeMonitorBreakpoint      : 1630px;
+@widescreenMonitorBreakpoint : 1920px;
+
+/*-------------------
+        Page
+--------------------*/
+
+@pageBackground      : #131722;
+@textColor           : #aaa;
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #aaa;
+@linkHoverColor      : #3BB3E4;
+
+/*-------------------
+      Site Colors
+--------------------*/
+
+@red              : #ef5451;
+@green            : #2aa599;
+@blue             : #3BB3E4;
+@lightRed         : #f2716e;
+@lightGreen       : #33c7b8;
+@lightBlue        : #70d2ff;
+@black            : #131722;
+
+/*-------------------
+    Emotive Colors
+--------------------*/
+
+@negativeColor           : @red;
+@negativeBackgroundColor : fade(@red, 10%);
+@negativeBorderColor     : fade(@red, 30%);
+@negativeHeaderColor     : @red;
+@negativeTextColor       : @red;
+
+/*-------------------
+     Alpha Colors
+--------------------*/
+
+@subtleTransparentBlack     : rgba(0, 0, 0, 0.10);
+@transparentBlack           : rgba(0, 0, 0, 0.20);
+@strongTransparentBlack     : rgba(0, 0, 0, 0.30);
+@veryStrongTransparentBlack : rgba(0, 0, 0, 0.40);
+
+@subtleTransparentWhite     : rgba(255, 255, 255, 0.02);
+@transparentWhite           : rgba(255, 255, 255, 0.08);
+@strongTransparentWhite     : rgba(255, 255, 255, 0.15);
+
+/*-------------------
+     Neutral Text
+--------------------*/
+
+@darkTextColor               : fade(@textColor, 50%);
+@mutedTextColor              : fade(@textColor, 70%);
+@lightTextColor              : fade(@textColor, 80%);
+
+@unselectedTextColor         : fade(@textColor, 40%);
+@hoveredTextColor            : fade(@textColor, 80%);
+@pressedTextColor            : fade(@textColor, 90%);
+@selectedTextColor           : fade(@textColor, 95%);
+@disabledTextColor           : fade(@textColor, 20%);
+
+@invertedTextColor           : rgba(0, 0, 0, 0.9);
+@invertedMutedTextColor      : rgba(0, 0, 0, 0.8);
+@invertedLightTextColor      : rgba(0, 0, 0, 0.7);
+@invertedUnselectedTextColor : rgba(0, 0, 0, 0.5);
+@invertedHoveredTextColor    : rgba(0, 0, 0, 1);
+@invertedPressedTextColor    : rgba(0, 0, 0, 1);
+@invertedSelectedTextColor   : rgba(0, 0, 0, 1);
+@invertedDisabledTextColor   : rgba(0, 0, 0, 0.2);
+
+/*-------------------
+      Borders
+--------------------*/
+
+@borderColor               : #131722;
+@strongBorderColor         : rgba(34, 36, 38, 0.1);
+@internalBorderColor       : rgba(34, 36, 38, 0.1);
+@selectedBorderColor       : lighten(#131722, 30%);
+@strongSelectedBorderColor : lighten(#131722, 50%);
+@disabledBorderColor       : rgba(34, 36, 38, 0.5);
+
+@solidInternalBorderColor  : rgba(0, 0, 0, 0.3);
+@solidBorderColor          : #D4D4D5;
+@solidSelectedBorderColor  : #BCBDBD;
+
+@whiteBorderColor              : rgba(255, 255, 255, 0.1);
+@selectedWhiteBorderColor      : rgba(255, 255, 255, 0.8);
+
+@solidWhiteBorderColor         : #555555;
+@selectedSolidWhiteBorderColor : #999999;
+
+/*******************************
+             States
+*******************************/
+
+/*-------------------
+      Disabled
+--------------------*/
+
+@disabledOpacity: 0.7;
+@disabledTextColor: @textColor;
+@invertedDisabledTextColor: rgba(0, 0, 0, 0.3);

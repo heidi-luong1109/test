@@ -1,0 +1,72 @@
+{
+  "name": "orko",
+  "scripts": {},
+  "env": {
+    "AUTH_TOKEN": {
+      "description": "2FA authentication secret for dynamic IP whitelisting. You don't need this just to try out the application, but it is extremely recommended if you are going to be providing your API keys.",
+      "required": false
+    },
+    "SIMPLE_AUTH_USERNAME": {
+      "description": "A username to require for login.",
+      "required": false
+    },
+    "SIMPLE_AUTH_PASSWORD": {
+      "description": "A password to require for login. You can either enter this directly, or for more security, use generate-salt.sh and generate-hash.sh locally to set both this and SIMPLE_AUTH_SALT. See the Wiki for more information. If you're just trying out Orko, don't worry about this for now, and set the value directly.",
+      "required": false
+    },
+    "SIMPLE_AUTH_SALT": {
+      "description": "If set, acts as a hash salt for SIMPLE_AUTH_PASSWORD. May be omitted if SIMPLE_AUTH_PASSWORD is stored as plaintext, but is advised.  See the Wiki for more information.",
+      "required": false
+    },
+    "SIMPLE_AUTH_SECRET": {
+      "description": "A long, random string of characters of any type.",
+      "required": false,
+      "generator": "secret"
+    },
+    "SIMPLE_AUTH_SECOND_FACTOR": {
+      "description": "You may either set this to the same value as AUTH_TOKEN, in which case there will be a single 2FA step for your application, or if you want to be super-secure, use a completely different 2FA code.",
+      "required": false
+    },
+    "SIMPLE_AUTH_TOKEN_EXPIRY_MINUTES": {
+      "description": "The time before each token issued will expire and the user will be forced to log in again, in minutes.",
+      "required": false,
+      "value": "1440"
+    },
+    "JAVA_OPTS": {
+      "description": "You generally shouldn't need to change any of this. It's been well tuned for a Hobby Heroku instance.",
+      "value": "-server -Xmx186m -Xms186m -Xss512k -XX:MaxMetaspaceSize=104m -XX:+UseG1GC -Dsun.net.inetaddr.ttl=60 -Dio.netty.leakDetectionLevel=advanced"
+    },
+    "MAVEN_CUSTOM_GOALS": {
+      "description": "Used by the Heroku buildpack. Do not change.",
+      "value": "clean package"
+    },
+    "MAVEN_CUSTOM_OPTS": {
+      "description": "Used by the Heroku buildpack. Do not change.",
+      "value": "-Pui,bundle -DskipTests=true -T 1C"
+    },
+    "TELEGRAM_BOT_TOKEN": {
+      "description": "The Telegram bot API token. Can be omitted, in which case Telegram notifications won't be used.",
+      "required": false
+    },
+    "TELEGRAM_CHAT_ID": {
+      "description": "The Telegram chat ID. May be omitted if TELEGRAM_BOT_TOKEN is.",
+      "required": false
+    },
+    "SCRIPT_SIGNING_KEY": {
+      "description": "Any script jobs written to the database are signed with this in case the database is compromised.",
+      "required": true,
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": ["jawsdb", "papertrail"],
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}

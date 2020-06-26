@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>orko-end-to-end-testing</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>com.gruelbox</groupId>
+    <artifactId>orko-parent</artifactId>
+    <version>0.15.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <name>Orko End-to-End Tests</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>orko-app</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <configuration>
+          <header>../etc/HEADER</header>
+          <includes>
+            <include>cypress/**/*.js</include>
+            <include>cypress/**/*.ts</include>
+          </includes>
+          <excludes>
+            <exclude>node_modules/**</exclude>
+            <exclude>node/**</exclude>
+            <exclude>build/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.bazaarvoice.maven.plugins</groupId>
+        <artifactId>process-exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>application</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <name>orko</name>
+              <workingDir>../../orko-app</workingDir>
+              <healthcheckUrl>http://localhost:8080/</healthcheckUrl>
+              <arguments>
+                <argument>java</argument>
+                <argument>-Dmorf.mysql.noadmin=true</argument>
+                <argument>-jar</argument>
+                <argument>target/orko-app.jar</argument>
+                <argument>server</argument>
+                <argument>integration-test-config.yml</argument>
+              </arguments>
+              <processLogFile>${basedir}/app.log</processLogFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-all</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop-all</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>install node and npm</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v8.11.1</nodeVersion>
+              <npmVersion>6.4.1</npmVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm ci</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cypress verify</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>run cypress:verify</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cypress run</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>run cypress:run</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
